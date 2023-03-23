@@ -1,22 +1,21 @@
-import { NativeModules, Platform } from 'react-native';
-
-const LINKING_ERROR =
-  `The package 'react-native-editor' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-const Editor = NativeModules.Editor
-  ? NativeModules.Editor
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+import RichEditor from './RichEditor'
+import RichToolbar, { defaultActions } from './RichToolbar';
+import {actions} from './const'
+import {createHTML, getContentCSS} from './editor'
 
 export function multiply(a: number, b: number): Promise<number> {
-  return Editor.multiply(a, b);
+  return Promise.resolve(a * b);
+}
+
+export function multiply2(a: number, b: number): Promise<string> {
+  return Promise.resolve(`a * b = ${a} * ${b} = ${a * b}`);
+}
+
+export {
+  RichEditor,
+  RichToolbar,
+  actions,
+  defaultActions,
+  createHTML,
+  getContentCSS,
 }
