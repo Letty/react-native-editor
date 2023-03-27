@@ -121,6 +121,7 @@
         "error",
         {
           "quoteProps": "consistent",
+          "semi" : "false",
           "singleQuote": true,
           "tabWidth": 2,
           "trailingComma": "es5",
@@ -135,6 +136,7 @@
   ],
   "prettier": {
     "quoteProps": "consistent",
+    "semi" : false,
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
