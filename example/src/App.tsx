@@ -8,6 +8,10 @@ import {
   RichToolbar,
 } from 'react-native-editor';
 
+const iconDict =  {
+  'loveAction': require('./heart-solid.png')
+}
+
 const imageList = [
   'https://upload.wikimedia.org/wikipedia/commons/5/54/Rayleigh-Taylor_instability.jpg',
   'https://upload.wikimedia.org/wikipedia/commons/1/1a/Carnabotnet_geovideo_lowres.gif',
@@ -36,6 +40,13 @@ export default function App() {
   const [result, setResult] = React.useState<number | undefined>()
   const [content, setContent] = React.useState<string | undefined>(initHTML)
   const richText = React.createRef() || useRef()
+  const [toolbarActions, setToolbarActions] = React.useState([
+    actions.setBold,
+    actions.setItalic,
+    actions.insertBulletsList,
+    actions.insertOrderedList,
+    'loveAction',
+  ])
 
   React.useEffect(() => {
     multiply(3, 7).then(setResult);
@@ -60,14 +71,11 @@ export default function App() {
           useContainer={false}
         />
         <RichToolbar
-          actions={[
-            actions.setBold,
-            actions.setItalic,
-            actions.insertBulletsList,
-            actions.insertOrderedList,
-          ]}
+          actions={toolbarActions}
           editor={richText}
+          iconMap={iconDict}
           iconSize={20}
+          loveAction={() => console.log('<3')}
           reference={richText}
           selectedIconTint={'pink'}
         />
