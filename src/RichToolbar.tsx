@@ -1,50 +1,25 @@
 import React, {
+  FC,
   useEffect,
   useState,
 } from 'react'
 import {
   FlatList,
   Image,
-  StyleProp,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
-  ViewStyle,
 } from 'react-native'
 
 import { actions as editorActions } from './const'
-import type { defaultActions, RichEditor } from './types'
+import type { RichToolbarProps } from './types'
 
-type RichToolbar = {
-  actions?: Partial<defaultActions> | string[],
-  children: React.ReactNode,
-  disabled?: boolean,
-  disabledButtonStyle?: StyleProp<ViewStyle>,
-  disabledIconTint: string,
-  editor?: any,
-  flatContainerStyle?: StyleProp<ViewStyle>,
-  getEditor?: () => RichEditor,
-  iconGap?: number,
-  iconMap?: any,
-  iconSize?: number,
-  iconTint?: string,
-  itemStyle?: StyleProp<ViewStyle>,
-  onInsertImage?: () => void,
-  onInsertLink?: () => void,
-  onInsertVideo?: () => void,
-  selectedButtonStyle?: StyleProp<ViewStyle>,
-  selectedIconTint: string,
-  style?: StyleProp<ViewStyle>,
-  unselectedButtonStyle?: StyleProp<ViewStyle>,
-}
-
-type ToolbarItem = [
+type ToolbarItem = {
   action: string,
   selected: boolean,
-]
+}
 
-const RichToolbar: React.FC<RichToolbar> = ({
+const RichToolbar: FC<RichToolbarProps> = ({
   actions = defaultActions,
   children,
   disabled,
@@ -52,6 +27,7 @@ const RichToolbar: React.FC<RichToolbar> = ({
   disabledIconTint,
   editor,
   flatContainerStyle,
+  getEditor,
   iconGap = 16,
   iconMap,
   iconSize = 20,
@@ -65,18 +41,26 @@ const RichToolbar: React.FC<RichToolbar> = ({
   style,
   unselectedButtonStyle,
 }) => {
-  const [data, setData] = useState<ToolbarItem[]>()
+  const availableActions = actions
+  const [data, setData] = useState<ToolbarItem[]>([])
   const [editorRef, setEditorRef] = useState<any>()
+  const [items, setItems] = useState<string[]>([])
 
   useEffect(() => {
+    let e = null
     if (editor !== undefined || editor !== null) {
-      setEditorRef(editor.current)
+      e = editor.current
+    } else if (getEditor) {
+      e = getEditor
     }
-    if (actions) {
+    e.registerToolbar((_selectedItems: string[]) => selectedItems(_selectedItems))
+    setEditorRef(e)
+
+    if (availableActions) {
       let d: ToolbarItem[] = []
-      for(let i = 0; i < actions.length; i++) {
+      for(let i = 0; i < availableActions.length; i++) {
         d.push({
-          action: actions[i],
+          action: availableActions[i]!,
           selected: false,
         })
       }
@@ -84,16 +68,6 @@ const RichToolbar: React.FC<RichToolbar> = ({
     }
   }, [])
 
-  const changeSelection = (selectedAction) => {
-    let d = []
-    for(let i = 0; i < data.length; i++) {
-      d.push({
-        action: data[i].action,
-        selected: data[i].action === selectedAction ? !data[i]?.selected : data[i]?.selected,
-      })
-    }
-    setData(d)
-  }
   const _getIcon = (action: string) => {
     if (iconMap && iconMap[action]) {
       return iconMap[action]
@@ -102,10 +76,25 @@ const RichToolbar: React.FC<RichToolbar> = ({
     }
   }
 
-  const _onPress = (action: string) => {
-    if (!editor) return
+  const selectedItems = (selection: string[]) => {
+    if (editor && items !== selection) {
+      let d = availableActions.map((action: string) => ({action, selected: selection.includes(action)}))
+      setItems(selection)
+      setData(d)
+    }
+  }
 
-    changeSelection(action)
+  const handleKeyboard = () => {
+    if (!editor) return
+    if (editor.isKeyboardOpen) {
+      editor.dismissKeybord()
+    } else {
+      editor.focusContentEditor()
+    }
+  }
+
+  const onPressAction = (action: string) => {
+    if (!editor) return
     
     switch (action) {
       case editorActions.insertLink:
@@ -149,29 +138,32 @@ const RichToolbar: React.FC<RichToolbar> = ({
         onInsertVideo && onInsertVideo()
         break
       case editorActions.keyboard:
-        // handleKeyboard()
+        handleKeyboard()
         break
       default:
+        // TODO allow custom functions by user
+        console.log(action)
         break;
     }
   }
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }: { item: ToolbarItem }) => {
     const icon =  _getIcon(item.action)
     const tintColor = disabled ? disabledIconTint : item.selected ? selectedIconTint : iconTint
     return (
       <TouchableOpacity
       key={item.action}
       disabled={disabled}
-      onPress={() => _onPress(item.action)}
+      onPress={() => onPressAction(item.action)}
       style={[
         { width: iconGap + iconSize },
         styles.item,
         itemStyle,
-        item.selected && selectedButtonStyle ? selectedButtonStyle : null,
+        item.selected && selectedButtonStyle ? unselectedButtonStyle : null,
       ]}
       >
         {icon ? (
+          // TODO: support svg's or components from user
           // typeof icon === 'function' ? (
           //   icon({item.selected, disabled, tintColor, iconSize, iconGap})
           // ) : (
