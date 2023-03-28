@@ -19,28 +19,29 @@ type ToolbarItem = {
   selected: boolean,
 }
 
-const RichToolbar: FC<RichToolbarProps> = ({
-  actions = defaultActions,
-  children,
-  disabled,
-  disabledButtonStyle,
-  disabledIconTint,
-  editor,
-  flatContainerStyle,
-  getEditor,
-  iconGap = 16,
-  iconMap,
-  iconSize = 20,
-  iconTint = '#71787F',
-  itemStyle,
-  onInsertImage,
-  onInsertLink,
-  onInsertVideo,
-  selectedButtonStyle,
-  selectedIconTint,
-  style,
-  unselectedButtonStyle,
-}) => {
+const RichToolbar: FC<RichToolbarProps> = (props) => {
+  const {
+    actions = defaultActions,
+    children,
+    disabled,
+    disabledButtonStyle,
+    disabledIconTint,
+    editor,
+    flatContainerStyle,
+    getEditor,
+    iconGap = 16,
+    iconMap,
+    iconSize = 20,
+    iconTint = '#71787F',
+    itemStyle,
+    onInsertImage,
+    onInsertLink,
+    onInsertVideo,
+    selectedButtonStyle,
+    selectedIconTint,
+    style,
+    unselectedButtonStyle,
+  } = props
   const availableActions = actions
   const [data, setData] = useState<ToolbarItem[]>([])
   const [editorRef, setEditorRef] = useState<any>()
@@ -141,8 +142,8 @@ const RichToolbar: FC<RichToolbarProps> = ({
         handleKeyboard()
         break
       default:
-        // TODO allow custom functions by user
-        console.log(action)
+        // @ts-ignore
+        props[action] && props[action]()
         break;
     }
   }
