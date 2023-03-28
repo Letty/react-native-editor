@@ -208,6 +208,7 @@ export default class RichToolbar extends Component {
             : selected
             ? that.props.selectedIconTint
             : that.props.iconTint;
+
         return (
             <TouchableOpacity
                 key={action}

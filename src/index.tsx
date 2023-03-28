@@ -1,5 +1,5 @@
 import RichEditor from './RichEditor'
-import RichToolbar, { defaultActions } from './RichToolbar';
+import RichToolbar, { defaultActions } from './RichToolbar2'
 import { actions } from './const'
 import {
   createHTML,
