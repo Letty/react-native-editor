@@ -1,3 +1,7 @@
+import {
+  HTMLOptions
+} from './types'
+
 const getContentCSS = (): string => {
   return `
     <style>

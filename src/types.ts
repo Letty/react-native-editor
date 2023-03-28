@@ -2,7 +2,7 @@
 type autoCapitalize = 'on' | 'off' | 'none' | 'words' | 'sentences' | 'characters'
 type defaultParagraphSeperator = 'div' | 'p'
 
-interface HTMLOptions {
+export type HTMLOptions = {
   autoCapitalize: autoCapitalize,
   autoCorrect: boolean,
   backgroundColor: string,
@@ -10,7 +10,7 @@ interface HTMLOptions {
   color: string,
   contentCSSText: string,
   cssText: string,
-  defaultParagraphSeparator: string,
+  defaultParagraphSeparator: defaultParagraphSeperator,
   enterKeyHint: string,
   firstFocusEnd: boolean,
   initialCSSText: string,
