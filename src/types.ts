@@ -54,3 +54,39 @@ export type RichToolbarProps = {
   style?: StyleProp<ViewStyle>,
   unselectedButtonStyle?: StyleProp<ViewStyle>,
 }
+
+export type RichEditorProps = {
+  autoCapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'
+  defaultParagraphSeparator: defaultParagraphSeperator
+  disabled?: boolean
+  editorInitializedCallback?: () => void
+  editorStyle?: {
+    backgroundColor?: string
+    caretColor?: string
+    color?: string
+    contentCSSText?: string
+    cssText?: string
+    font?: string
+    initialCSSText?: string
+    placeholderColor?: string
+  }
+  enterKeyHint?: 'done' | 'go' | 'next' | 'search' | 'send'
+  firstFocusEnd?: boolean
+  initialContentHTML?: string
+  initialFocus?: boolean
+  initialHeight?: number | string
+  onBlur?: () => void
+  onChange?: (text: string) => void
+  onCursorPosition?: (offsetY: number) => void
+  onFocus?: () => void
+  onHeightChange?: (height: number) => void
+  onInput?: ({data: string, inputType: string}) => void
+  onKeyDown?: (event: React.KeyboardEvent) => void
+  onKeyUp?: (event: React.KeyboardEvent) => void
+  onMessage?: (message: {type: string; id: string; data?: any}) => void
+  onPaste?: (data: string) => void
+  pasteAsPlainText?: boolean
+  placeholder?: string
+  style?: StyleProp<ViewStyle>
+  useContainer?: boolean
+}
