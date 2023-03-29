@@ -9,7 +9,12 @@ import {
 } from 'react-native-editor';
 
 const iconDict =  {
-  'loveAction': require('./heart-solid.png')
+  'loveAction': require('./heart-solid.png'),
+  'otherAction': (selected: boolean, disabled: boolean, tintColor: string, iconSize: number, iconGap: number) => (
+    <View>
+      <Text>O</Text>
+    </View>
+  )
 }
 
 const imageList = [
@@ -46,6 +51,7 @@ export default function App() {
     actions.insertBulletsList,
     actions.insertOrderedList,
     'loveAction',
+    'otherAction'
   ])
 
   React.useEffect(() => {
@@ -76,6 +82,7 @@ export default function App() {
           iconMap={iconDict}
           iconSize={20}
           loveAction={() => console.log('<3')}
+          otherAction={() => console.log('👾')}
           reference={richText}
           selectedIconTint={'pink'}
         />
