@@ -65,8 +65,9 @@ export default function App() {
         <RichEditor
           editorStyle={{
             contentCSSText: `
-              font-size: 16px;
+              font-size: 20px;
             `,
+            font: 'fantasy',
           }}
           initialContentHTML={content}
           onChange={setContent}
