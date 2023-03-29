@@ -20,6 +20,7 @@ export type HTMLOptions = {
   defaultParagraphSeparator: defaultParagraphSeperator,
   enterKeyHint: string,
   firstFocusEnd: boolean,
+  font: string,
   initialCSSText: string,
   inputListener: boolean,
   keyDownListener: boolean,

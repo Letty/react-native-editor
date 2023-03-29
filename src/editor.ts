@@ -32,6 +32,7 @@ const createHTML = (options: HTMLOptions = {
   defaultParagraphSeparator: 'div',
   enterKeyHint: '',
   firstFocusEnd: true,
+  font: '',
   initialCSSText: '',
   inputListener: false,
   keyDownListener: false,
@@ -52,6 +53,7 @@ const createHTML = (options: HTMLOptions = {
     defaultParagraphSeparator,
     enterKeyHint,
     firstFocusEnd,
+    font,
     initialCSSText,
     inputListener,
     keyDownListener,
@@ -71,9 +73,9 @@ const createHTML = (options: HTMLOptions = {
     <style>
       ${initialCSSText}
       * {outline: 0px solid transparent;-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-touch-callout: none;box-sizing: border-box;}
-      html, body { margin: 0; padding: 0;font-family: Arial, Helvetica, sans-serif; font-size:1em; height: 100%}
+      html, body { margin: 0; padding: 0;font-family: ${font}, Arial, Helvetica, sans-serif; font-size:1em; height: 100%}
       body { overflow-y: hidden; -webkit-overflow-scrolling: touch;background-color: ${backgroundColor};caret-color: ${caretColor};}
-      .content {font-family: Arial, Helvetica, sans-serif;color: ${color}; width: 100%;${!useContainer ? 'height:100%;' : ''}-webkit-overflow-scrolling: touch;padding-left: 0;padding-right: 0;}
+      .content {font-family: ${font}, Arial, Helvetica, sans-serif;color: ${color}; width: 100%;${!useContainer ? 'height:100%;' : ''}-webkit-overflow-scrolling: touch;padding-left: 0;padding-right: 0;}
       .pell { height: 100%;} .pell-content { outline: 0; overflow-y: auto;padding: 10px;height: 100%;${contentCSSText}}
     </style>
     <style>
