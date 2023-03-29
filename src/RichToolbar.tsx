@@ -54,7 +54,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
     } else if (getEditor) {
       e = getEditor
     }
-    e.registerToolbar((_selectedItems: string[]) => selectedItems(_selectedItems))
+    e.registerToolbar((_selectedItems: string[]) => setSelectedItems(_selectedItems))
     setEditorRef(e)
 
     if (availableActions) {
@@ -69,7 +69,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
     }
   }, [])
 
-  const _getIcon = (action: string) => {
+  const getIcon = (action: string) => {
     if (iconMap && iconMap[action]) {
       return iconMap[action]
     } else {
@@ -77,7 +77,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
     }
   }
 
-  const selectedItems = (selection: string[]) => {
+  const setSelectedItems = (selection: string[]) => {
     if (editor && items !== selection) {
       let d = availableActions.map((action: string) => ({action, selected: selection.includes(action)}))
       setItems(selection)
@@ -149,7 +149,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
   }
 
   const renderItem = ({ item }: { item: ToolbarItem }) => {
-    const icon =  _getIcon(item.action)
+    const icon =  getIcon(item.action)
     const selected = item.selected
     const tintColor = disabled ? disabledIconTint : selected ? selectedIconTint : iconTint
     return (
