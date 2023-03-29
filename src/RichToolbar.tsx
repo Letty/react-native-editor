@@ -150,7 +150,8 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
 
   const renderItem = ({ item }: { item: ToolbarItem }) => {
     const icon =  _getIcon(item.action)
-    const tintColor = disabled ? disabledIconTint : item.selected ? selectedIconTint : iconTint
+    const selected = item.selected
+    const tintColor = disabled ? disabledIconTint : selected ? selectedIconTint : iconTint
     return (
       <TouchableOpacity
       key={item.action}
@@ -160,14 +161,13 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
         { width: iconGap + iconSize },
         styles.item,
         itemStyle,
-        item.selected && selectedButtonStyle ? unselectedButtonStyle : null,
+        selected && selectedButtonStyle ? unselectedButtonStyle : null,
       ]}
       >
         {icon ? (
-          // TODO: support svg's or components from user
-          // typeof icon === 'function' ? (
-          //   icon({item.selected, disabled, tintColor, iconSize, iconGap})
-          // ) : (
+          typeof icon === 'function' ? (
+            icon({selected, disabled, tintColor, iconSize, iconGap})
+          ) :
             <Image
               source={icon}
               style={{
