@@ -1,6 +1,7 @@
 # react-native-editor
 
-tba
+Fork of [react-native-rich-editor](https://github.com/wxik/react-native-rich-editor) rewritten in typescript and functional components.
+Work and progress.
 
 ## Installation
 
@@ -11,11 +12,7 @@ npm install react-native-editor
 ## Usage
 
 ```js
-import { multiply } from 'react-native-editor';
-
-// ...
-
-const result = await multiply(3, 7);
+tba
 ```
 
 ## Contributing
