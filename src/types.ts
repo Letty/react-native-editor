@@ -4,31 +4,32 @@ import type {
   StyleProp,
   ViewStyle,
 } from 'react-native'
+import type { WebViewMessageEvent, WebViewProps } from 'react-native-webview'
 
 type autoCapitalize = 'on' | 'off' | 'none' | 'words' | 'sentences' | 'characters'
 type defaultParagraphSeperator = 'div' | 'p'
 export type defaultActions = ['image', 'bold', 'italic', 'unorderedList', 'orderedList', 'link']
 
 export type HTMLOptions = {
-  autoCapitalize: autoCapitalize,
-  autoCorrect: boolean,
-  backgroundColor: string,
-  caretColor: string,
-  color: string,
-  contentCSSText: string,
-  cssText: string,
-  defaultParagraphSeparator: defaultParagraphSeperator,
-  enterKeyHint: string,
-  firstFocusEnd: boolean,
-  font: string,
-  initialCSSText: string,
-  inputListener: boolean,
-  keyDownListener: boolean,
-  keyUpListener: boolean,
-  pasteAsPlainText: boolean,
-  pasteListener: boolean,
-  placeholderColor: string,
-  useContainer: boolean
+  autoCapitalize?: autoCapitalize,
+  autoCorrect?: boolean,
+  backgroundColor?: string,
+  caretColor?: string,
+  color?: string,
+  contentCSSText?: string,
+  cssText?: string,
+  defaultParagraphSeparator?: defaultParagraphSeperator,
+  enterKeyHint?: string,
+  firstFocusEnd?: boolean,
+  font?: string,
+  initialCSSText?: string,
+  inputListener?: boolean,
+  keyDownListener?: boolean,
+  keyUpListener?: boolean,
+  pasteAsPlainText?: boolean,
+  pasteListener?: boolean,
+  placeholderColor?: string,
+  useContainer?: boolean
 }
 
 export type RichToolbarProps = {
@@ -55,9 +56,10 @@ export type RichToolbarProps = {
   unselectedButtonStyle?: StyleProp<ViewStyle>,
 }
 
-export type RichEditorProps = {
+export interface RichEditorProps extends WebViewProps {
   autoCapitalize?: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'
-  defaultParagraphSeparator: defaultParagraphSeperator
+  autoCorrect?: boolean,
+  defaultParagraphSeparator?: defaultParagraphSeperator
   disabled?: boolean
   editorInitializedCallback?: () => void
   editorStyle?: {
@@ -74,7 +76,7 @@ export type RichEditorProps = {
   firstFocusEnd?: boolean
   initialContentHTML?: string
   initialFocus?: boolean
-  initialHeight?: number | string
+  initialHeight?: number
   onBlur?: () => void
   onChange?: (text: string) => void
   onCursorPosition?: (offsetY: number) => void
@@ -83,10 +85,23 @@ export type RichEditorProps = {
   onInput?: ({data: string, inputType: string}) => void
   onKeyDown?: (event: React.KeyboardEvent) => void
   onKeyUp?: (event: React.KeyboardEvent) => void
-  onMessage?: (message: {type: string; id: string; data?: any}) => void
+  onMessage?: (message: WebViewMessageEvent) => void
   onPaste?: (data: string) => void
   pasteAsPlainText?: boolean
   placeholder?: string
   style?: StyleProp<ViewStyle>
   useContainer?: boolean
+}
+
+export interface RichEditorRef {
+  dismissKeybord: () => void,
+  focusContentEditor: () => void,
+  insertImage: (attributes: string, style: string) => void,
+  insertLink: (title: string, url: string) => void,
+  insertText: (text: string) => void,
+  insertVideo: (attributes: string, style: string) => void,
+  isKeyboardOpen: boolean,
+  registerToolbar(listener: any): void,
+  sendAction: (type: string, action?: string, data?: any, options?: any) => void,
+  showAndroidKeyboard: () => void,
 }
