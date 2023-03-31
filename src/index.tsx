@@ -6,14 +6,6 @@ import {
   getContentCSS,
 } from './editor'
 
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
-
-export function multiply2(a: number, b: number): Promise<string> {
-  return Promise.resolve(`a * b = ${a} * ${b} = ${a * b}`);
-}
-
 export {
   RichEditor,
   RichToolbar,
