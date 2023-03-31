@@ -7,6 +7,7 @@ import {
   RichEditor,
   RichToolbar,
 } from 'react-native-editor';
+import { RichEditorRef } from 'src/types';
 
 const iconDict =  {
   'loveAction': require('./heart-solid.png'),
@@ -44,7 +45,7 @@ const initHTML = `<br/>
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>()
   const [content, setContent] = React.useState<string | undefined>(initHTML)
-  const richText = React.createRef() || useRef()
+  const richText = React.createRef<RichEditorRef>()
   const [toolbarActions, setToolbarActions] = React.useState([
     actions.setBold,
     actions.setItalic,
@@ -67,7 +68,7 @@ export default function App() {
             contentCSSText: `
               font-size: 20px;
             `,
-            font: 'fantasy',
+            font: 'Lato',
           }}
           initialContentHTML={content}
           onChange={setContent}
