@@ -21,48 +21,27 @@ const getContentCSS = (): string => {
   `
 }
 
-const createHTML = (options: HTMLOptions = {
-  autoCapitalize: 'off',
-  autoCorrect: false,
-  backgroundColor: '#FFFFFF',
-  caretColor: '',
-  color: '#000033',
-  contentCSSText: '',
-  cssText: '',
-  defaultParagraphSeparator: 'div',
-  enterKeyHint: '',
-  firstFocusEnd: true,
-  font: '',
-  initialCSSText: '',
-  inputListener: false,
-  keyDownListener: false,
-  keyUpListener: false,
-  pasteAsPlainText: false,
-  pasteListener: false,
-  placeholderColor: '#a9a9a9',
-  useContainer: true
-}): string => {
-  const {
-    autoCapitalize,
-    autoCorrect,
-    backgroundColor,
-    caretColor,
-    color,
-    contentCSSText,
-    cssText,
-    defaultParagraphSeparator,
-    enterKeyHint,
-    firstFocusEnd,
-    font,
-    initialCSSText,
-    inputListener,
-    keyDownListener,
-    keyUpListener,
-    pasteAsPlainText,
-    pasteListener,
-    placeholderColor,
-    useContainer,
-  } = options
+const createHTML = ({
+  autoCapitalize = 'off',
+  autoCorrect = false,
+  backgroundColor = '#FFFFFF',
+  caretColor = '',
+  color = '#000033',
+  contentCSSText = '',
+  cssText = '',
+  defaultParagraphSeparator = 'div',
+  enterKeyHint = '',
+  firstFocusEnd = true,
+  font = '',
+  initialCSSText = '',
+  inputListener = false,
+  keyDownListener = false,
+  keyUpListener = false,
+  pasteAsPlainText = false,
+  pasteListener = false,
+  placeholderColor = '#a9a9a9',
+  useContainer = true
+}: HTMLOptions): string => {
 
   return `
   <!DOCTYPE html>
@@ -667,7 +646,7 @@ const createHTML = (options: HTMLOptions = {
   `
 }
 
-const HTML = createHTML()
+const HTML = createHTML({})
 export {
   HTML,
   createHTML,
