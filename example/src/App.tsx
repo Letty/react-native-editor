@@ -22,12 +22,11 @@ const imageList = [
 ]
 
 const initHTML = `<br/>
-<center><b id="title" contenteditable="false">Rich Editor</b></center>
 <center>
-<div><center><img src="${imageList[0]}" contenteditable="false"/></center></div>
-<pre type="javascript"><code>const editor = ReactNative;</code><code>console.log(editor);</code></pre>
-<div>
-<img src="${imageList[1]}" contenteditable="false"/>
+  <b id="title" contenteditable="false">Rich Editor</b>
+  <img src="${imageList[1]}" contenteditable="false"  height="170px"/>
+</center>
+<div>Some content goes here</div>
 </div>
 `;
 
