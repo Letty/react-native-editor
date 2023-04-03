@@ -100,7 +100,7 @@ export interface RichEditorProps extends WebViewProps {
   onCursorPosition?: (offsetY: number) => void
   onFocus?: () => void
   onHeightChange?: (height: number) => void
-  onInput?: ({ data: string, inputType: string }) => void
+  onInput?: (data: any) => void
   onKeyDown?: (event: React.KeyboardEvent) => void
   onKeyUp?: (event: React.KeyboardEvent) => void
   onMessage?: (message: WebViewMessageEvent) => void
