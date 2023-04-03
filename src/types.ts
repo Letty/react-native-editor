@@ -23,6 +23,7 @@ export type HTMLOptions = {
   firstFocusEnd?: boolean,
   font?: string,
   initialCSSText?: string,
+  initialFocus?: boolean,
   inputListener?: boolean,
   keyDownListener?: boolean,
   keyUpListener?: boolean,
