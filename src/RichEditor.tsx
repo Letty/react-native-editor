@@ -43,7 +43,7 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>((props, ref)
     enterKeyHint,
     firstFocusEnd,
     initialContentHTML = '',
-    initialFocus,
+    initialFocus = true,
     initialHeight = 0,
     onBlur,
     onChange,
@@ -65,7 +65,7 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>((props, ref)
   const [toolbarItemsListener, setToolbarItemsListener] = useState<any[]>([])
   const [focusListeners, setFocusListeners] = useState<any[]>([])
   const [hasFocus, setFocus] = useState<boolean>(false)
-  const [height, setHeight] = useState<number>(0)
+  const [height, setHeight] = useState<number>(initialHeight ? initialHeight : 0)
   const [html, setHtml] = useState<string>('')
   const [inputRef, setInputRef] = useState<any>()
   const [isKeyboardOpen, setKeyboardOpen] = useState<boolean>(false)
@@ -87,6 +87,7 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>((props, ref)
       font,
       enterKeyHint,
       initialCSSText,
+      initialFocus: initialFocus && !disabled,
       inputListener: !!onInput,
       keyDownListener: !!onKeyDown,
       keyUpListener: !!onKeyUp,
