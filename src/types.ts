@@ -10,6 +10,14 @@ type autoCapitalize = 'on' | 'off' | 'none' | 'words' | 'sentences' | 'character
 type defaultParagraphSeperator = 'div' | 'p'
 export type defaultActions = ['image', 'bold', 'italic', 'unorderedList', 'orderedList', 'link']
 
+export type IconProps = {
+  selected: boolean,
+  disabled: boolean,
+  tintColor: string,
+  iconSize: number,
+  iconGap: number,
+}
+
 export type HTMLOptions = {
   autoCapitalize?: autoCapitalize,
   autoCorrect?: boolean,
