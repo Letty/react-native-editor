@@ -1,6 +1,4 @@
-import type {
-  HTMLOptions
-} from './types'
+import type { HTMLOptions } from './types'
 
 const getContentCSS = (): string => {
   return `
@@ -41,9 +39,8 @@ const createHTML = ({
   pasteAsPlainText = false,
   pasteListener = false,
   placeholderColor = '#a9a9a9',
-  useContainer = true
+  useContainer = true,
 }: HTMLOptions): string => {
-
   return `
   <!DOCTYPE html>
   <html>
@@ -55,7 +52,9 @@ const createHTML = ({
       * {outline: 0px solid transparent;-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-touch-callout: none;box-sizing: border-box;}
       html, body { margin: 0; padding: 0;font-family: ${font}, Arial, Helvetica, sans-serif; font-size:1em; height: 100%}
       body { overflow-y: hidden; -webkit-overflow-scrolling: touch;background-color: ${backgroundColor};caret-color: ${caretColor};}
-      .content {font-family: ${font}, Arial, Helvetica, sans-serif;color: ${color}; width: 100%;${!useContainer ? 'height:100%;' : ''}-webkit-overflow-scrolling: touch;padding-left: 0;padding-right: 0;}
+      .content {font-family: ${font}, Arial, Helvetica, sans-serif;color: ${color}; width: 100%;${
+    !useContainer ? 'height:100%;' : ''
+  }-webkit-overflow-scrolling: touch;padding-left: 0;padding-right: 0;}
       .pell { height: 100%;} .pell-content { outline: 0; overflow-y: auto;padding: 10px;height: 100%;${contentCSSText}}
     </style>
     <style>
@@ -648,8 +647,4 @@ const createHTML = ({
 }
 
 const HTML = createHTML({})
-export {
-  HTML,
-  createHTML,
-  getContentCSS,
-}
+export { HTML, createHTML, getContentCSS }
