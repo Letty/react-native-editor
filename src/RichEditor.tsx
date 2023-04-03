@@ -109,16 +109,24 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
       ref,
       () => {
         return {
+          blurContentEditor,
+          command,
+          commandDOM,
           dismissKeybord,
           focusContentEditor,
+          injectJavascript,
           insertHTML,
           insertImage,
           insertLink,
           insertText,
           insertVideo,
           isKeyboardOpen,
+          preCode,
           registerToolbar,
           sendAction,
+          setFontSize,
+          setForeColor,
+          setHiliteColor,
           showAndroidKeyboard,
         }
       },
@@ -226,13 +234,13 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
     }
 
     const command = (command_: any) => {
-      if (command) {
+      if (command_) {
         sendAction(actions.content, 'command', command_)
       }
     }
 
     const commandDOM = (command_: any) => {
-      if (command) {
+      if (command_) {
         sendAction(actions.content, 'commandDOM', command_)
       }
     }
@@ -244,6 +252,10 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
     const focusContentEditor = () => {
       showAndroidKeyboard()
       sendAction(actions.content, 'focus')
+    }
+
+    const injectJavascript = (script: string) => {
+      return webviewBridge.current?.injectJavaScript(script)
     }
 
     const insertHTML = (html_: string) => {

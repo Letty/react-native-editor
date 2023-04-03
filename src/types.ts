@@ -112,15 +112,23 @@ export interface RichEditorProps extends WebViewProps {
 }
 
 export interface RichEditorRef {
+  blurContentEditor: () => void
+  command: (command: string) => void
+  commandDOM: (command: string) => void
   dismissKeybord: () => void
   focusContentEditor: () => void
-  insertHTML: () => void
+  injectJavascript: (type: string) => void
+  insertHTML: (html: string) => void
   insertImage: (attributes: string, style: string) => void
   insertLink: (title: string, url: string) => void
   insertText: (text: string) => void
   insertVideo: (attributes: string, style: string) => void
   isKeyboardOpen: boolean
+  preCode: (type: string) => void
   registerToolbar(listener: any): void
   sendAction: (type: string, action?: string, data?: any, options?: any) => void
+  setFontSize: (size: 1 | 2 | 3 | 4 | 5 | 6 | 7) => void
+  setForeColor: (color: string) => void
+  setHiliteColor: (color: string) => void
   showAndroidKeyboard: () => void
 }
