@@ -67,17 +67,17 @@ export default function App() {
           scrollEnabled={true}
           useContainer={false}
         />
-        <RichToolbar
-          actions={toolbarActions}
-          editor={richText}
-          iconMap={iconDict}
-          iconSize={20}
-          loveAction={() => console.log('<3')}
-          otherAction={() => console.log('👾')}
-          reference={richText}
-          selectedIconTint={'pink'}
-        />
       </View>
+      <RichToolbar
+        actions={toolbarActions}
+        editor={richText}
+        iconMap={iconDict}
+        iconSize={20}
+        loveAction={() => console.log('<3')}
+        otherAction={() => console.log('👾')}
+        reference={richText}
+        selectedIconTint={'pink'}
+      />
     </View>
   )
 }
@@ -85,12 +85,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 50,
   },
   textContainer: {
     backgroundColor: '#f4e2fc',
-    flex: 1,
+    height: '50%',
     width: '100%',
   },
 })
