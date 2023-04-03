@@ -1,23 +1,24 @@
+/* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import {
-  actions,
-  RichEditor,
-  RichToolbar,
-} from 'react-native-editor'
+import { actions, RichEditor, RichToolbar } from 'react-native-editor'
 import type { IconProps, RichEditorRef } from 'src/types'
 
-const iconDict =  {
-  'loveAction': require('./heart-solid.png'),
-  'otherAction': (data: IconProps) => {
+const iconDict = {
+  loveAction: require('./heart-solid.png'),
+  otherAction: (data: IconProps) => {
     return (
       <View>
-        <Text style={{
-          color: data.selected ? data.tintColor : 'black',
-        }}>O</Text>
+        <Text
+          style={{
+            color: data.selected ? data.tintColor : 'black',
+          }}
+        >
+          O
+        </Text>
       </View>
     )
-  }
+  },
 }
 
 const imageList = [
@@ -32,7 +33,7 @@ const initHTML = `<br/>
 </center>
 <div>Some content goes here</div>
 </div>
-`;
+`
 
 const toolbarActions = [
   actions.setBold,
@@ -40,7 +41,7 @@ const toolbarActions = [
   actions.insertBulletsList,
   actions.insertOrderedList,
   'loveAction',
-  'otherAction'
+  'otherAction',
 ]
 
 export default function App() {
@@ -78,7 +79,7 @@ export default function App() {
         />
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -92,4 +93,4 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-});
+})
