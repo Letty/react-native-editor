@@ -1,8 +1,4 @@
-import React, {
-  FC,
-  useEffect,
-  useState,
-} from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import {
   FlatList,
   Image,
@@ -15,8 +11,8 @@ import { actions as editorActions } from './const'
 import type { RichToolbarProps } from './types'
 
 type ToolbarItem = {
-  action: string,
-  selected: boolean,
+  action: string
+  selected: boolean
 }
 
 const RichToolbar: FC<RichToolbarProps> = (props) => {
@@ -54,12 +50,14 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
     } else if (getEditor) {
       e = getEditor?.()
     }
-    e?.registerToolbar((_selectedItems: string[]) => setSelectedItems(_selectedItems))
+    e?.registerToolbar((_selectedItems: string[]) =>
+      setSelectedItems(_selectedItems)
+    )
     setEditorRef(e)
 
     if (availableActions) {
       let d: ToolbarItem[] = []
-      for(let i = 0; i < availableActions.length; i++) {
+      for (let i = 0; i < availableActions.length; i++) {
         d.push({
           action: availableActions[i]!,
           selected: false,
@@ -67,7 +65,8 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
       }
       setData(d)
     }
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [availableActions, editor, getEditor])
 
   const getIcon = (action: string) => {
     if (iconMap && iconMap[action]) {
@@ -79,7 +78,10 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
 
   const setSelectedItems = (selection: string[]) => {
     if (editor && items !== selection) {
-      let d = availableActions.map((action: string) => ({action, selected: selection.includes(action)}))
+      let d = availableActions.map((action: string) => ({
+        action,
+        selected: selection.includes(action),
+      }))
       setItems(selection)
       setData(d)
     }
@@ -96,10 +98,11 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
 
   const onPressAction = (action: string) => {
     if (!editor) return
-    
+
     switch (action) {
       case editorActions.insertLink:
         if (onInsertLink) return onInsertLink()
+        break
       case editorActions.setBold:
       case editorActions.setItalic:
       case editorActions.undo:
@@ -131,7 +134,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
       case editorActions.outdent:
         editorRef.showAndroidKeyboard()
         editorRef.sendAction(action, 'result')
-        break;
+        break
       case editorActions.insertImage:
         onInsertImage && onInsertImage()
         break
@@ -144,30 +147,34 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
       default:
         // @ts-ignore
         props[action] && props[action]()
-        break;
+        break
     }
   }
 
   const renderItem = ({ item }: { item: ToolbarItem }) => {
-    const icon =  getIcon(item.action)
+    const icon = getIcon(item.action)
     const selected = item.selected
-    const tintColor = disabled ? disabledIconTint : selected ? selectedIconTint : iconTint
+    const tintColor = disabled
+      ? disabledIconTint
+      : selected
+      ? selectedIconTint
+      : iconTint
     return (
       <TouchableOpacity
-      key={item.action}
-      disabled={disabled}
-      onPress={() => onPressAction(item.action)}
-      style={[
-        { width: iconGap + iconSize },
-        styles.item,
-        itemStyle,
-        selected && selectedButtonStyle ? unselectedButtonStyle : null,
-      ]}
+        key={item.action}
+        disabled={disabled}
+        onPress={() => onPressAction(item.action)}
+        style={[
+          { width: iconGap + iconSize },
+          styles.item,
+          itemStyle,
+          selected && selectedButtonStyle ? unselectedButtonStyle : null,
+        ]}
       >
         {icon ? (
           typeof icon === 'function' ? (
-            icon({selected, disabled, tintColor, iconSize, iconGap})
-          ) :
+            icon({ selected, disabled, tintColor, iconSize, iconGap })
+          ) : (
             <Image
               source={icon}
               style={{
@@ -175,19 +182,22 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
                 height: iconSize,
                 width: iconSize,
               }}
-              />
-          // )
-        ) : null }
+            />
+          )
+        ) : // )
+        null}
       </TouchableOpacity>
     )
   }
-  
+
   return (
-    <View style={[
-      styles.barContainer,
-      style,
-      disabled && disabledButtonStyle && disabledButtonStyle
-    ]}>
+    <View
+      style={[
+        styles.barContainer,
+        style,
+        disabled && disabledButtonStyle && disabledButtonStyle,
+      ]}
+    >
       <FlatList
         alwaysBounceHorizontal={false}
         contentContainerStyle={flatContainerStyle}
@@ -198,7 +208,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
         renderItem={renderItem}
         showsHorizontalScrollIndicator={false}
       />
-      { children }
+      {children}
     </View>
   )
 }
@@ -212,7 +222,7 @@ const styles = StyleSheet.create({
   item: {
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 })
 
 export const defaultActions: string[] = [
@@ -228,7 +238,7 @@ export const defaultActions: string[] = [
 ]
 
 const getDefaultIcon = () => {
-  const icons: any = {} 
+  const icons: any = {}
   icons[editorActions.insertImage] = require('../img/image.png')
   icons[editorActions.keyboard] = require('../img/keyboard.png')
   icons[editorActions.setBold] = require('../img/bold.png')
