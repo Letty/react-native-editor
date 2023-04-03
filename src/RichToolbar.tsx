@@ -52,9 +52,9 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
     if (editor !== undefined || editor !== null) {
       e = editor.current
     } else if (getEditor) {
-      e = getEditor
+      e = getEditor?.()
     }
-    e.registerToolbar((_selectedItems: string[]) => setSelectedItems(_selectedItems))
+    e?.registerToolbar((_selectedItems: string[]) => setSelectedItems(_selectedItems))
     setEditorRef(e)
 
     if (availableActions) {
