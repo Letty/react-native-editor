@@ -41,7 +41,7 @@ export type RichToolbarProps = {
   disabledIconTint: string,
   editor?: any,
   flatContainerStyle?: StyleProp<ViewStyle>,
-  getEditor?: () => RichEditor | any,
+  getEditor?: () => RichEditorRef | any,
   iconGap?: number,
   iconMap?: any,
   iconSize?: number,
