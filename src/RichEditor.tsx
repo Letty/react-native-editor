@@ -111,6 +111,7 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
         return {
           dismissKeybord,
           focusContentEditor,
+          insertHTML,
           insertImage,
           insertLink,
           insertText,

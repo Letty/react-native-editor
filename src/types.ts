@@ -114,6 +114,7 @@ export interface RichEditorProps extends WebViewProps {
 export interface RichEditorRef {
   dismissKeybord: () => void
   focusContentEditor: () => void
+  insertHTML: () => void
   insertImage: (attributes: string, style: string) => void
   insertLink: (title: string, url: string) => void
   insertText: (text: string) => void
