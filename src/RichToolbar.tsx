@@ -66,7 +66,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
       setData(d)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [availableActions, editor, getEditor])
+  }, [])
 
   const getIcon = (action: string) => {
     if (iconMap && iconMap[action]) {
@@ -159,6 +159,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
       : selected
       ? selectedIconTint
       : iconTint
+
     return (
       <TouchableOpacity
         key={item.action}
