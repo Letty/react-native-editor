@@ -5,15 +5,19 @@ import {
   RichEditor,
   RichToolbar,
 } from 'react-native-editor'
-import type { RichEditorRef } from 'src/types'
+import type { IconProps, RichEditorRef } from 'src/types'
 
 const iconDict =  {
   'loveAction': require('./heart-solid.png'),
-  'otherAction': (selected: boolean, disabled: boolean, tintColor: string, iconSize: number, iconGap: number) => (
-    <View>
-      <Text>O</Text>
-    </View>
-  )
+  'otherAction': (data: IconProps) => {
+    return (
+      <View>
+        <Text style={{
+          color: data.selected ? data.tintColor : 'black',
+        }}>O</Text>
+      </View>
+    )
+  }
 }
 
 const imageList = [
@@ -48,6 +52,7 @@ export default function App() {
       <View style={styles.textContainer}>
         <RichEditor
           editorStyle={{
+            backgroundColor: '#f4e2fc',
             contentCSSText: `
               font-size: 20px;
             `,
@@ -84,12 +89,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: '#f4e2fc',
-    height: 400,
+    flex: 1,
     width: '100%',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });
