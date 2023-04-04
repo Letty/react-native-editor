@@ -44,16 +44,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
   const [items, setItems] = useState<string[]>([])
 
   useEffect(() => {
-    let e = null
-    if (editor !== undefined || editor !== null) {
-      e = editor.current
-    } else if (getEditor) {
-      e = getEditor?.()
-    }
-    e?.registerToolbar((_selectedItems: string[]) =>
-      setSelectedItems(_selectedItems)
-    )
-    setEditorRef(e)
+    initEditorRef()
 
     if (availableActions) {
       let d: ToolbarItem[] = []
@@ -67,6 +58,20 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const initEditorRef = () => {
+    let e = null
+    if (editor !== undefined || editor !== null) {
+      e = editor.current
+    } else if (getEditor) {
+      e = getEditor?.()
+    }
+    e?.registerToolbar((_selectedItems: string[]) =>
+      setSelectedItems(_selectedItems)
+    )
+    setEditorRef(e)
+
+  }
 
   const getIcon = (action: string) => {
     if (iconMap && iconMap[action]) {
@@ -88,7 +93,10 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
   }
 
   const handleKeyboard = () => {
-    if (!editor) return
+    if (!editor) {
+      initEditorRef()
+      return
+    }
     if (editor.isKeyboardOpen) {
       editor.dismissKeybord()
     } else {
@@ -97,7 +105,10 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
   }
 
   const onPressAction = (action: string) => {
-    if (!editor) return
+    if (!editor) {
+      initEditorRef()
+      return
+    }
 
     switch (action) {
       case editorActions.insertLink:
