@@ -14,7 +14,7 @@ const iconDict = {
             color: data.selected ? data.tintColor : 'black',
           }}
         >
-          O
+          👾
         </Text>
       </View>
     )
@@ -73,8 +73,12 @@ export default function App() {
         editor={richText}
         iconMap={iconDict}
         iconSize={20}
-        loveAction={() => console.log('<3')}
-        otherAction={() => console.log('👾')}
+        loveAction={() => {
+          richText?.current?.insertHTML('<span><3<3<3<3<3</span>')
+        }}
+        otherAction={() => {
+          richText?.current?.insertHTML('<span>👾👾👾👾👾👾👾👾👾👾</span>')
+        }}
         reference={richText}
         selectedIconTint={'pink'}
       />
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: '#f4e2fc',
-    height: '50%',
+    height: '90%',
     width: '100%',
   },
 })
