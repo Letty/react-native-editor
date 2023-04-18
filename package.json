@@ -1,6 +1,6 @@
 {
   "name": "react-native-editor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "test",
   "repository": "https://github.com/Letty/react-native-editor",
   "author": "Letty <git@letty.io> (https://github.com/Letty)",
@@ -56,7 +56,7 @@
     "react": "18.2.0",
     "react-native": "0.71.4",
     "react-native-builder-bob": "^0.20.4",
-    "react-native-webview": "^11.26.1",
+    "react-native-webview": "^12.0.2",
     "release-it": "^15.0.0",
     "typescript": "^4.5.2"
   },
