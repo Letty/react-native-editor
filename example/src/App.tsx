@@ -35,18 +35,22 @@ const initHTML = `<br/>
 </div>
 `
 
-const toolbarActions = [
-  actions.setBold,
-  actions.setItalic,
-  actions.insertBulletsList,
-  actions.insertOrderedList,
-  'loveAction',
-  'otherAction',
-]
-
 export default function App() {
   const [content, setContent] = React.useState<string | undefined>(initHTML)
   const richText = React.createRef<RichEditorRef>()
+  const [toolbarActions, setToolbarActions] = React.useState<string[]>([
+    actions.setBold,
+    actions.setItalic,
+    actions.insertBulletsList,
+    actions.insertOrderedList,
+    'loveAction',
+  ])
+
+  React.useEffect(() => {
+    if (toolbarActions && !toolbarActions.includes('otherAction')) {
+      setToolbarActions(toolbarActions.concat(['otherAction']))
+    }
+  }, [toolbarActions])
 
   return (
     <View style={styles.container}>
