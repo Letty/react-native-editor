@@ -45,7 +45,10 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
 
   useEffect(() => {
     initEditorRef()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
+  useEffect(() => {
     if (availableActions) {
       let d: ToolbarItem[] = []
       for (let i = 0; i < availableActions.length; i++) {
@@ -56,8 +59,7 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
       }
       setData(d)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [availableActions])
 
   const initEditorRef = () => {
     let e = null
