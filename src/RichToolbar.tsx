@@ -72,7 +72,6 @@ const RichToolbar: FC<RichToolbarProps> = (props) => {
       setSelectedItems(_selectedItems)
     )
     setEditorRef(e)
-
   }
 
   const getIcon = (action: string) => {
