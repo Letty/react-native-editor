@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, TextInput } from 'react-native'
 import { actions, RichEditor, RichToolbar } from 'react-native-editor'
 import type { IconProps, RichEditorRef } from 'src/types'
 
@@ -46,6 +46,7 @@ export default function App() {
     'loveAction',
   ])
 
+  // TODO changing the toolbarActions with useeffect leads to disapearing icons
   React.useEffect(() => {
     if (toolbarActions && !toolbarActions.includes('otherAction')) {
       setToolbarActions(toolbarActions.concat(['otherAction']))
@@ -54,6 +55,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Text>Regular Input</Text>
+      <TextInput />
+      <Text>Richtext Editor</Text>
       <View style={styles.textContainer}>
         <RichEditor
           editorStyle={{
@@ -63,6 +67,7 @@ export default function App() {
             `,
             font: 'Lato',
           }}
+          initialFocus={true}
           initialContentHTML={content}
           onChange={setContent}
           // pasteAsPlainText
@@ -81,7 +86,7 @@ export default function App() {
           richText?.current?.insertHTML('<span><3<3<3<3<3</span>')
         }}
         otherAction={() => {
-          richText?.current?.insertHTML('<span>👾👾👾👾👾👾👾👾👾👾</span>')
+          richText?.current?.insertHTML('<span>👾👾👾👾👾👾👾👾👾👾</span>') 
         }}
         reference={richText}
         selectedIconTint={'pink'}
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: '#f4e2fc',
-    height: '90%',
+    flexGrow: 1,
     width: '100%',
   },
 })
