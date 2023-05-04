@@ -46,7 +46,7 @@ export default function App() {
     'loveAction',
   ])
 
-  // TODO changing the toolbarActions with useeffect leads to disapearing icons
+  // TODO changing the toolbarActions with useeffect leads to disappearing icons
   React.useEffect(() => {
     if (toolbarActions && !toolbarActions.includes('otherAction')) {
       setToolbarActions(toolbarActions.concat(['otherAction']))
