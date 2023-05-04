@@ -27,7 +27,7 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
       enterKeyHint,
       firstFocusEnd,
       initialContentHTML = '',
-      initialFocus = true,
+      initialFocus = false,
       initialHeight = 0,
       onBlur,
       onChange,
