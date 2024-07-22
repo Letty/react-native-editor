@@ -1,45 +1,26 @@
 {
   "name": "react-native-editor",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "test",
   "repository": "https://github.com/Letty/react-native-editor",
   "author": "Letty <git@letty.io> (https://github.com/Letty)",
   "license": "MIT",
   "homepage": "https://github.com/Letty/react-native-editor#readme",
-  "main": "src/index",
+  "main": "src/index.tsx",
   "types": "src/types.ts",
-  "files": [
-    "src",
-    "lib",
-    "android",
-    "ios",
-    "cpp",
-    "*.podspec",
-    "!lib/typescript/example",
-    "!ios/build",
-    "!android/build",
-    "!android/gradle",
-    "!android/gradlew",
-    "!android/gradlew.bat",
-    "!android/local.properties",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "!**/.*"
-  ],
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepack": "bob build",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install && yarn example pods",
-    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build"
+    "bootstrap": "yarn example && yarn install"
   },
   "keywords": [
     "react-native"
   ],
   "devDependencies": {
+    "@babel/runtime": "^7.24.8",
     "@react-native-community/eslint-config": "^3.0.2",
     "@types/jest": "^29.5.3",
     "@types/react": "~18.2.20",
@@ -82,7 +63,7 @@
         "error",
         {
           "quoteProps": "consistent",
-          "semi" : false,
+          "semi": false,
           "singleQuote": true,
           "tabWidth": 2,
           "trailingComma": "es5",
@@ -97,7 +78,7 @@
   ],
   "prettier": {
     "quoteProps": "consistent",
-    "semi" : false,
+    "semi": false,
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
