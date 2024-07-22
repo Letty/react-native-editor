@@ -364,6 +364,7 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
             onLoad={initWebview}
             onMessage={onMessage}
             originWhitelist={['*']}
+            // @ts-ignore:
             ref={webviewBridge}
             scrollEnabled={false}
             source={{ html: html }}
@@ -381,11 +382,13 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
       )
     }
 
+    // @ts-ignore:
     const onViewLayout = ({ nativeEvent: { layout_ } }) => {
       setLayout(layout_)
     }
 
     return useContainer ? (
+      // @ts-ignore:
       <View style={[style, { height: height }]} onLayout={onViewLayout}>
         {renderWebview()}
       </View>
