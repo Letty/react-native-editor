@@ -7,7 +7,7 @@
   "license": "MIT",
   "homepage": "https://github.com/Letty/react-native-editor#readme",
   "main": "src/index.tsx",
-  "types": "src/types.d.ts",
+  "types": "lib/typescript/types.d.ts",
   "scripts": {
     "test": "jest",
     "typecheck": "tsc --noEmit",
