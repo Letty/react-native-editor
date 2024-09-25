@@ -3,6 +3,9 @@ import * as React from 'react'
 import { StyleSheet, View, Text, TextInput } from 'react-native'
 import { actions, RichEditor, RichToolbar } from 'react-native-editor'
 import type { IconProps, RichEditorRef } from 'src/types'
+import FontFamilyStylesheet from './stylesheet.js';
+
+const fontFamily = 'Edu AU VIC WA NT Guides';
 
 const iconDict = {
   loveAction: require('./heart-solid.png'),
@@ -35,6 +38,7 @@ const initHTML = `<br/>
 </div>
 `
 
+
 export default function App() {
   const [content, setContent] = React.useState<string | undefined>(initHTML)
   const richText = React.createRef<RichEditorRef>()
@@ -61,11 +65,12 @@ export default function App() {
       <View style={styles.textContainer}>
         <RichEditor
           editorStyle={{
+            initialCSSText: `${FontFamilyStylesheet}`,
             backgroundColor: '#f4e2fc',
             contentCSSText: `
+              font-family: ${fontFamily};
               font-size: 20px;
             `,
-            font: 'Lato',
           }}
           initialFocus={true}
           initialContentHTML={content}
