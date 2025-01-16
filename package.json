@@ -63,6 +63,5 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
-  },
-  "packageManager": "yarn@3.6.4"
+  }
 }
