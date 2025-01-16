@@ -8,13 +8,6 @@
   "homepage": "https://github.com/Letty/react-native-editor#readme",
   "main": "src/index.tsx",
   "types": "lib/typescript/types.d.ts",
-  "scripts": {
-    "test": "jest",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepack": "bob build",
-    "example": "yarn --cwd example"
-  },
   "keywords": [
     "react-native"
   ],
