@@ -355,7 +355,7 @@ const RichEditor = React.forwardRef<RichEditorRef, RichEditorProps>(
         <>
           <WebView
             bounces={false}
-            dataDetectorTypes={'none'}
+            dataDetectorTypes={['none']}
             domStorageEnabled={false}
             hideKeyboardAccessoryView={true}
             javaScriptEnabled={true}
