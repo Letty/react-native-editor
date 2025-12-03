@@ -1,6 +1,6 @@
 {
   "name": "react-native-editor",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "test",
   "repository": "https://github.com/Letty/react-native-editor",
   "author": "Letty <git@letty.io> (https://github.com/Letty)",
@@ -20,17 +20,17 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.2",
-    "react": "18.2.0",
-    "react-native": "0.72.4",
-    "react-native-webview": "^13.3.1",
+    "react": "19.0.0",
+    "react-native": "0.79.6",
+    "react-native-webview": "^13.16.0",
     "typescript": "^5.1.6"
   },
   "resolutions": {
     "@types/react": "18.2.20"
   },
   "peerDependencies": {
-    "react": "18.2.0",
-    "react-native": "^0.72.4"
+    "react": "19.0.0",
+    "react-native": "0.79.6"
   },
   "eslintConfig": {
     "root": true,
